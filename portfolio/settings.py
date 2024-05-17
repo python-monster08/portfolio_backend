@@ -22,12 +22,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-v83+pbz&%gggy*mnoj0e!a+^wnj&e%tb*us%er2%84f35#p7%@'
+SECRET_KEY = os.environ.get("SECRET_KEY")
+# SECRET_KEY = 'django-insecure-v83+pbz&%gggy*mnoj0e!a+^wnj&e%tb*us%er2%84f35#p7%@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
 
 
 # Application definition
@@ -90,10 +91,12 @@ WSGI_APPLICATION = 'portfolio.wsgi.application'
 # }
 
 # Replace the SQLite DATABASES configuration with PostgreSQL:
+database_url = os.environ.get("DATABASE_URL")
 DATABASES = {
     'default': dj_database_url.config(
         # Replace this value with your local database's connection string.
-        default='postgres://kamlesh:8EE1u4jmSBNRR5ycIEK1bv8S7OoXEopv@dpg-cp3037ol5elc73aepo3g-a.oregon-postgres.render.com/portfolio_db_5unb',
+        default=database_url,
+        # default='postgres://kamlesh:8EE1u4jmSBNRR5ycIEK1bv8S7OoXEopv@dpg-cp3037ol5elc73aepo3g-a.oregon-postgres.render.com/portfolio_db_5unb',
         conn_max_age=600
     )
 }
