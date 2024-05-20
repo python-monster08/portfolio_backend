@@ -1,5 +1,7 @@
 from django.urls import path
 from .views import (
+    CertificateDetail,
+    CertificateListCreate,
     ProfileListCreate,
     ProfileDetail,
     ProjectListCreate,
@@ -25,4 +27,6 @@ urlpatterns = [
     path('social-media/', SocialMediaListCreate.as_view(), name='social-media-list-create'),
     path('social_media/<int:pk>/', SocialMediaDetail.as_view(), name='social-media-detail'),
     path('title-strings/', get_title_strings, name='get-typed-strings'),
+    path('certificates/', CertificateListCreate.as_view(), name='certificate-list-create'),
+    path('certificates/<int:pk>/', CertificateDetail.as_view(), name='certificate-detail'),
 ]

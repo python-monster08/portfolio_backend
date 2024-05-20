@@ -1,6 +1,7 @@
 from rest_framework import generics
-from .models import Profile, Project, Skill, Experience, SocialMedia
+from .models import Certificate, Profile, Project, Skill, Experience, SocialMedia
 from .serializers import (
+    CertificateSerializer,
     ProfileSerializer,
     ProjectSerializer,
     SkillSerializer,
@@ -59,3 +60,13 @@ def get_title_strings(request):
     }
     print(data)
     return JsonResponse(data)
+
+
+
+class CertificateListCreate(generics.ListCreateAPIView):
+    queryset = Certificate.objects.all()
+    serializer_class = CertificateSerializer
+
+class CertificateDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Certificate.objects.all()
+    serializer_class = CertificateSerializer

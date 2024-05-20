@@ -58,3 +58,14 @@ class TitleString(models.Model):
 
     def __str__(self):
         return self.text
+    
+
+class Certificate(models.Model):
+    title = models.CharField(max_length=200)
+    issued_by = models.CharField(max_length=200)
+    issue_date = models.DateField()
+    description = models.TextField()
+    certificate_file = models.FileField(upload_to='certificates/')
+
+    def __str__(self):
+        return self.title
