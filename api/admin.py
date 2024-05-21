@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from .models import Profile, Project, Skill, Experience, SocialMedia, TitleString, Certificate
+from .models import Profile, Project, Skill, Experience, SocialMedia, TitleString, Certificate, Contact
 from ckeditor.widgets import CKEditorWidget
 from django.db import models
 
@@ -71,3 +71,4 @@ admin.site.register(Experience, ExperienceAdmin)
 admin.site.register(SocialMedia, SocialMediaAdmin)
 admin.site.register(TitleString)
 admin.site.register(Certificate)
+admin.site.register(Contact)

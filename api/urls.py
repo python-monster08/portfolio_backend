@@ -2,6 +2,7 @@ from django.urls import path
 from .views import (
     CertificateDetail,
     CertificateListCreate,
+    ContactView,
     ProfileListCreate,
     ProfileDetail,
     ProjectListCreate,
@@ -29,4 +30,5 @@ urlpatterns = [
     path('title-strings/', get_title_strings, name='get-typed-strings'),
     path('certificates/', CertificateListCreate.as_view(), name='certificate-list-create'),
     path('certificates/<int:pk>/', CertificateDetail.as_view(), name='certificate-detail'),
+    path('contact/', ContactView.as_view(), name='contact'),
 ]

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Profile, Project, Skill, Experience, SocialMedia, Certificate
+from .models import Profile, Project, Skill, Experience, SocialMedia, Certificate, Contact
 
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
@@ -32,3 +32,9 @@ class CertificateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Certificate
         fields = '__all__'
+
+
+class ContactSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Contact
+        fields = ['id', 'email', 'message', 'created_at']

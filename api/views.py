@@ -1,5 +1,5 @@
 from rest_framework import generics
-from .models import Certificate, Profile, Project, Skill, Experience, SocialMedia
+from .models import Certificate, Profile, Project, Skill, Experience, SocialMedia, Contact 
 from .serializers import (
     CertificateSerializer,
     ProfileSerializer,
@@ -8,6 +8,12 @@ from .serializers import (
     ExperienceSerializer,
     SocialMediaSerializer,
 )
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from django.core.mail import send_mail
+from .models import Contact
+from .serializers import ContactSerializer
 
 class ProfileListCreate(generics.ListCreateAPIView):
     queryset = Profile.objects.all()
@@ -70,3 +76,18 @@ class CertificateListCreate(generics.ListCreateAPIView):
 class CertificateDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Certificate.objects.all()
     serializer_class = CertificateSerializer
+
+class ContactView(APIView):
+    def post(self, request, *args, **kwargs):
+        serializer = ContactSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            # Send email notification
+            send_mail(
+                subject=f"New Contact Inquiry from {serializer.validated_data['email']}",
+                message=serializer.validated_data['message'],
+                from_email=serializer.validated_data['email'],
+                recipient_list=['your-email@example.com'],  # Replace with your email
+            )
+            return Response({"success": "Message sent successfully!"}, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
