@@ -94,15 +94,22 @@ WSGI_APPLICATION = 'portfolio.wsgi.application'
 
 # Replace the SQLite DATABASES configuration with PostgreSQL:
 database_url = os.environ.get("DATABASE_URL")
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         # Replace this value with your local database's connection string.
+#         default=database_url,
+#         # default='postgres://kamlesh:8EE1u4jmSBNRR5ycIEK1bv8S7OoXEopv@dpg-cp3037ol5elc73aepo3g-a.oregon-postgres.render.com/portfolio_db_5unb',
+#         conn_max_age=600
+#     )
+# }
+
 DATABASES = {
     'default': dj_database_url.config(
-        # Replace this value with your local database's connection string.
-        default=database_url,
-        # default='postgres://kamlesh:8EE1u4jmSBNRR5ycIEK1bv8S7OoXEopv@dpg-cp3037ol5elc73aepo3g-a.oregon-postgres.render.com/portfolio_db_5unb',
-        conn_max_age=600
+        default=os.getenv("DATABASE_URL"),  # Fetch from environment variables
+        conn_max_age=600,
+        ssl_require=True  # Enforce SSL for secure connection
     )
 }
-
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
