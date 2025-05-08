@@ -99,8 +99,22 @@ DATABASES = {
 #         # Replace this value with your local database's connection string.
 #         # default=database_url,
 #         default='postgresql://portfolio_db_user:xR5by3xCDKECoAUJTkqLIwr2SNPNKLoH@dpg-cv5v9j7noe9s73bokfs0-a.oregon-postgres.render.com/portfolio_db_t2g1',
-#         conn_max_age=600
+#         conn_max_age=600,
+#         ssl_require=True  # Enforce SSL for secure connection
 #     )
+# }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'portfolio_db_g5pk',
+#         'USER': 'portfolio_db',
+#         'PASSWORD': 'dM8YsPKyF4ef5niy2kzg6nUxLWOMxwy2',
+#         'HOST': 'dpg-d0e5iapr0fns73cp9r70-a.oregon-postgres.render.com',       # e.g., 'localhost' or 'dpg-xyz.oregon-postgres.render.com'
+#         'PORT': '5432',
+#         'OPTIONS': {
+#             'sslmode': 'require',     # optional for cloud DBs like Render
+#         },
+#     }
 # }
 
 # DATABASES = {
