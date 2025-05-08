@@ -22,15 +22,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY")
-# SECRET_KEY = 'django-insecure-v83+pbz&%gggy*mnoj0e!a+^wnj&e%tb*us%er2%84f35#p7%@'
+# SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = 'django-insecure-v83+pbz&%gggy*mnoj0e!a+^wnj&e%tb*us%er2%84f35#p7%@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG", "False") == "True"
-# DEBUG = True
+# DEBUG = os.environ.get("DEBUG", "False") == "True"
+DEBUG = True
 
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
-# ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -85,15 +85,15 @@ WSGI_APPLICATION = 'portfolio.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 # Replace the SQLite DATABASES configuration with PostgreSQL:
-database_url = os.environ.get("DATABASE_URL")
+# database_url = os.environ.get("DATABASE_URL")
 # DATABASES = {
 #     'default': dj_database_url.config(
 #         # Replace this value with your local database's connection string.
@@ -103,13 +103,13 @@ database_url = os.environ.get("DATABASE_URL")
 #     )
 # }
 
-DATABASES = {
-    'default': dj_database_url.config(
-        default=os.getenv("DATABASE_URL"),  # Fetch from environment variables
-        conn_max_age=600,
-        ssl_require=True  # Enforce SSL for secure connection
-    )
-}
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         default=os.getenv("DATABASE_URL"),  # Fetch from environment variables
+#         conn_max_age=600,
+#         ssl_require=True  # Enforce SSL for secure connection
+#     )
+# }
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
@@ -180,7 +180,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #     "http://localhost:5174",  # Vite default port
 # ]
 
-CORS_ALLOWED_ORIGINS = os.environ.get("CORS_ALLOWED_ORIGINS").split(" ")
+# CORS_ALLOWED_ORIGINS = os.environ.get("CORS_ALLOWED_ORIGINS").split(" ")
+# CORS_ALLOWED_ORIGINS = "https://kamlesh-lovewanshi-portfolio-dj953g84o.vercel.app https://kamlesh-lovewanshi-portfolio-git-main-pythonmonster08s-projects.vercel.app https://kamlesh-lovewanshi-portfolio.vercel.app"
+CORS_ALLOWED_ORIGINS = [
+    "https://kamlesh-lovewanshi-portfolio-dj953g84o.vercel.app",
+    "https://kamlesh-lovewanshi-portfolio-git-main-pythonmonster08s-projects.vercel.app",
+    "https://kamlesh-lovewanshi-portfolio.vercel.app",
+]
 
 # ckeditor files Start here
 
@@ -244,7 +250,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-# EMAIL_HOST_USER = 'lovewanshik32@gmail.com'
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-# EMAIL_HOST_PASSWORD = 'fndq mnlc pyth dmjd'
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_HOST_USER = 'lovewanshik32@gmail.com'
+# EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = 'fndq mnlc pyth dmjd'
+# EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
